@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./index.css";
+import { UserOptions } from "./components/UserOptions";
+import { useState } from "react";
+import { getUrl } from "./api/getUrl";
+import { Box } from "@mui/material";
+import Game from "./components/Game";
 
-function App() {
+const App = () => {
+  const [isGameStart, setIsGameStart] = useState(false);
+  const [url, setUrl] = useState();
+
+  const startGame = (options) => {
+    setUrl(() => getUrl(options));
+    setIsGameStart(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      minHeight="100vh"
+    >
+      {!isGameStart ? (
+        <UserOptions startGame={startGame}></UserOptions>
+      ) : (
+        <Game url={url}></Game>
+      )}
+    </Box>
   );
-}
+};
 
 export default App;
