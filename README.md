@@ -4,6 +4,8 @@ Select either anime, characters, or manga and choose difficulty to start playing
 
 This memory card game fetches data on anime, manga, and characters from the [Jikan API](https://jikan.moe).
 
+[Live Preview](https://dai-huynh.github.io/memory-card)
+
 ## Technologies used
 
 - ReactJS
