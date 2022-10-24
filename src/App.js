@@ -1,18 +1,23 @@
 import React from "react";
-import "./index.css";
-import { UserOptions } from "./components/UserOptions";
 import { useState } from "react";
-import { getUrl } from "./api/getUrl";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { Box } from "@mui/material";
-import Game from "./components/Game";
+import Game from "./components/Game/Game";
+import { UserOptions } from "./components/Form/UserOptions";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   const [isGameStart, setIsGameStart] = useState(false);
-  const [url, setUrl] = useState();
+  const [options, setOptions] = useState();
 
   const startGame = (options) => {
-    setUrl(() => getUrl(options));
+    setOptions(options);
     setIsGameStart(true);
+  };
+
+  const endGame = () => {
+    setIsGameStart(!isGameStart);
   };
 
   return (
@@ -21,11 +26,14 @@ const App = () => {
       alignItems="center"
       justifyContent="center"
       minHeight="100vh"
+      color="white"
     >
       {!isGameStart ? (
         <UserOptions startGame={startGame}></UserOptions>
       ) : (
-        <Game url={url}></Game>
+        <QueryClientProvider client={queryClient}>
+          <Game endGame={endGame} options={options}></Game>
+        </QueryClientProvider>
       )}
     </Box>
   );

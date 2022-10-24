@@ -1,17 +1,14 @@
 export const shuffleArray = (array) => {
-  let m = array.length;
+  let data = array;
+  let m = data.length;
   let t, i;
 
-  // While there remain elements to shuffle…
   while (m) {
-    // Pick a remaining element…
     i = Math.floor(Math.random() * m--);
-
-    // And swap it with the current element.
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
+    t = data[m];
+    data[m] = data[i];
+    data[i] = t;
   }
 
-  return array;
+  return data;
 };
