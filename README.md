@@ -25,6 +25,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## To do
 
 - Prevent users from seeing previous cards when changing difficulty
+- Fix styling on various components
 - Implement some CSS animations on GameOver component
 - Add more options
 
